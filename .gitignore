@@ -1,3 +1,7 @@
+# Mac OS X
+.DS_Store
+
+# NODEJS
 # Logs
 logs
 *.log
