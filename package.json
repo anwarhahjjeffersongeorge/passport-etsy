@@ -1,0 +1,48 @@
+{
+  "name": "passport-etsy",
+  "version": "0.0.0",
+  "description": "Etsy (OAuth) authentication strategy for Passport and Node.js",
+  "homepage": "https://github.com/anwarhahjjeffersongeorge/passport-etsy",
+  "author": {
+    "name": "Anwar Hahj Jefferson-George",
+    "email": "anwarhahjjeffersongeorge@gmail.com",
+    "url": "https://plus.google.com/+AnwarHahjJeffersonGeorge/"
+  },
+  "files": [
+    "dist"
+  ],
+  "main": "dist/index.js",
+  "keywords": [
+    "passport",
+    "passportjs",
+    "passport",
+    "strategy",
+    "etsy",
+    "oauth"
+  ],
+  "repository": "https://github.com/anwarhahjjeffersongeorge/passport-etsy.git",
+  "devDependencies": {
+    "babel-core": "^5.5.0",
+    "chai": "^3.4.1",
+    "chai-passport-strategy": "^0.2.0",
+    "del": "^2.0.2",
+    "gulp": "^3.6.0",
+    "gulp-babel": "^5.1.0",
+    "gulp-coveralls": "^0.1.0",
+    "gulp-eslint": "^1.0.0",
+    "gulp-exclude-gitignore": "^1.0.0",
+    "gulp-istanbul": "^0.9.0",
+    "gulp-mocha": "^2.0.0",
+    "gulp-nsp": "^2.1.0",
+    "gulp-plumber": "^1.0.0",
+    "isparta": "^3.0.3"
+  },
+  "scripts": {
+    "prepublish": "gulp prepublish",
+    "test": "gulp"
+  },
+  "license": "MIT",
+  "dependencies": {
+    "passport-oauth": "^1.0.0"
+  }
+}
