@@ -1,6 +1,8 @@
 /**
 * Module deps
 */
+'use strict';
+
 var Strategy = require('./strategy');
 
 /**
@@ -9,6 +11,8 @@ var Strategy = require('./strategy');
 exports = module.exports = Strategy;
 
 /**
-* expose constructors
+* export constructors
 */
 exports.Strategy = Strategy;
+
+//export default {};
