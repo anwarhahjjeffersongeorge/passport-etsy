@@ -20,10 +20,18 @@
     "etsy",
     "oauth"
   ],
-  "repository": "https://github.com/anwarhahjjeffersongeorge/passport-etsy.git",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/anwarhahjjeffersongeorge/passport-etsy.git"
+  },
+  "bugs": {
+    "url": "https://github.com/anwarhahjjeffersongeorge/passport-etsy/issues"
+  },
   "devDependencies": {
     "babel-core": "^5.5.0",
+    "babel-preset-es2015": "^6.1.4",
     "chai": "^3.4.1",
+    "chai-as-promised": "^5.1.0",
     "chai-passport-strategy": "^0.2.0",
     "del": "^2.0.2",
     "gulp": "^3.6.0",

@@ -52,12 +52,13 @@
         "named": "never"
       }
     ],
+    "no-console" : 1,
     "space-in-parens": [
       2,
       "never"
     ],
     "strict": [
-      2,
+      1,
       "global"
     ],
     "curly": [
@@ -129,6 +130,10 @@
       }
     ],
     "space-return-throw-case": 2
+  },
+  "globals": {
+    "expect": true,
+    "assert": true
   },
   "ecmaFeatures": {
     "modules": true

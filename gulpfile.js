@@ -45,14 +45,18 @@ gulp.task('pre-test', function () {
 gulp.task('test', ['pre-test'], function (cb) {
   var mochaErr;
 
-  gulp.src('test/**/*.js')
+  gulp.src('test/*.js')
     .pipe(plumber())
-    .pipe(mocha({reporter: 'spec'}))
+    .pipe(mocha({
+      reporter: 'spec',
+      require: ['./test/bootstrap/node.js']
+    }))
     .on('error', function (err) {
       mochaErr = err;
     })
     .pipe(istanbul.writeReports())
     .on('end', function () {
+      console.log('test on end');
       cb(mochaErr);
     });
 });
@@ -68,7 +72,9 @@ gulp.task('coveralls', ['test'], function () {
 
 gulp.task('babel', ['clean'], function () {
   return gulp.src('lib/**/*.js')
-    .pipe(babel())
+    .pipe(babel({
+      presets: ['es2015']
+    }))
     .pipe(gulp.dest('dist'));
 });
 
