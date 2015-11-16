@@ -6,7 +6,7 @@
 function etsyCredentials(){
   var creds;
   try {
-    creds = require('../../../trialdata/streetcred.js');
+    creds = require('../trialdata/streetcred.js');
   } catch (e) {
     creds = {
       keystring: 'YOUR_KEY_GOES_HERE',

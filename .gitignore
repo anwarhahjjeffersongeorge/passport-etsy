@@ -27,5 +27,5 @@ build/Release
 node_modules
 
 # Testing settings directory
-/trialdata/**
-!/trialdata/README.md
+examples/login/trialdata/**
+!examples/login/trialdata/README.md

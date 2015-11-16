@@ -2,12 +2,17 @@
 Etsy (OAuth) authentication strategy for Passport and Node.js.
 
 ## Install
+```
+$npm install passport-etsy
+```
 
 ## Usage
 #### Configure Strategy
 The Etsy authentication strategy uses an Etsy account and OAuth tokens to authenticate users.
 It requires:
+
 1. A `consumerKey`, `consumerSecret`, and `callbackURL` [(see Etsy Developer portal)](https://www.etsy.com/developers/register), _and_
+
 2. A `verify` callback that accepts these credentials and provides the user to `done`
 
 ```
@@ -23,7 +28,7 @@ passport.use(new EtsyStrategy({
 ```
 
 #### Authenticate Requests
-You can authenticate requests using `passport.authenticate()`, specifying the `'etsy'` strategy.
+You can authenticate requests using `passport.authenticate()` and specifying the `'etsy'` strategy.
 
 In an [Express](http://expressjs.com/) application, create route middelware as follows:
 
@@ -70,16 +75,18 @@ Before trying `gulp-serve`, please:
 
 1. Provide your Etsy credentials _(keystring, secret)_ to the example code. You may:
   + Insert them in the `etsyCredentials` function of `examples/login/config/passport.config.js`, or
-  + Follow the instructions in `trialdata/README.md`
+  + Follow the instructions in `examples/login/trialdata/README.md`
 2. If you have changed the code in `lib`, execute `gulp-prepublish` to repopulate dist folder with your changes.
 
 #### Additional Information:
 - [Passport](http://passportjs.org/docs) by Jared Hanson
 - [passport-oauth](https://github.com/jaredhanson/passport-oauth)/[passport-oauth1](https://github.com/jaredhanson/passport-oauth1)
 - [Etsy Authentication](https://www.etsy.com/developers/documentation/getting_started/oauth)
-## Credits/Contact
+
+## Contact
 Anwar Hahj Jefferson-George:
 [Github](https://github.com/anwarhahjjeffersongeorge) |
 [Google+](https://plus.google.com/+AnwarHahjJeffersonGeorge/)
+
 ## License
 [MIT License](http://opensource.org/licenses/MIT)
