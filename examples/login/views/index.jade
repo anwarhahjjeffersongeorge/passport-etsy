@@ -1,0 +1,16 @@
+extends ./layout
+
+block content
+  if !authenticatedUser
+    h2 
+      | Salutations, unknown entity
+    p
+      a(href=loginlink)
+        | Login with Etsy
+  else
+    h2
+      | Back again #{authenticatedUser.id}?
+    include ./account
+    br
+    a(href=logoutlink)
+      | Logout of Etsy

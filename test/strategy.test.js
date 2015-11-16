@@ -1,5 +1,8 @@
-/*eslint no-unused-expressions: 1*/
-var EtsyStrategy = require('../lib/strategy');
+/*eslint no-unused-expressions: 1, no-new: 1*/
+var EtsyStrategy = require('../dist/strategy');
+
+//the Etsy response is formatted like This
+var expectedResponse = '{ "count":1, "results":[{"user_id": "_DEDEDEDE00", "login_name":"Neko Kone", "primary_email": "ne.ko@ko.ne"}]}';
 
 function getTestStrategy(){
   return new EtsyStrategy({
@@ -23,7 +26,7 @@ describe('EtsyStrategy-Object', function (){
   // SCOPE
   it('oughta return scope', function (){
     var params = strategyInstance.requestTokenParams({
-      scope: 'profile_r'
+      scope: ['profile_r']
     });
     assert.equal(params.scope, 'profile_r');
   });
@@ -44,7 +47,7 @@ describe('EtsyStrategy-Object', function (){
 describe('EtsyStrategy-Profile', function (){
   var strategyInstance;
   var testProfile;
-  var testBody = '{ "id": "_DEDEDEDE00"}';
+  var testBody = expectedResponse;
   var testJSON = JSON.parse(testBody);
   beforeEach('define strategy instance', function (done){
     strategyInstance = getTestStrategy();
@@ -139,7 +142,7 @@ describe('EtsyStrategy-Profile with bad JSON', function (){
 
 describe('EtsyStrategy-Profile with Etsy profile fields', function (){
   var testProfile;
-  var testBody = '{ "id": "_DEDEDEDE00"}';
+  var testBody = expectedResponse;
   var strategyInstance = new EtsyStrategy({
     consumerKey: 'ABC124',
     consumerSecret: 'secret',
@@ -179,7 +182,7 @@ describe('EtsyStrategy-Profile with Etsy profile fields', function (){
       // as passing error from beforeEach hook fails function as intended
     });
     // PROFILE LOADING
-    it('oughta load profile', function (){
+    it('oughta load profile with fields', function (){
       expect(testProfile.provider).to.equal('etsy');
       expect(testProfile.id).to.equal('_DEDEDEDE00');
     });
@@ -194,7 +197,7 @@ describe('EtsyStrategy-Profile with Etsy profile fields', function (){
 
 describe('EtsyStrategy-Profile with unmapped Etsy profile fields', function (){
   var testProfile;
-  var testBody = '{ "id": "_DEDEDEDE00"}';
+  var testBody = expectedResponse;
   var strategyInstance = new EtsyStrategy({
     consumerKey: 'ABC124',
     consumerSecret: 'secret',
@@ -213,7 +216,7 @@ describe('EtsyStrategy-Profile with unmapped Etsy profile fields', function (){
         callback(null, body, undefined);
         //callback(new Error('Incorrect user profile url'));
       } else {
-        callback(new Error('Incorrect user profile url'));
+        (new Error('Incorrect user profile url'));
       }
     };
     process.nextTick(function (){
@@ -250,7 +253,7 @@ describe('EtsyStrategy-Profile with unmapped Etsy profile fields', function (){
 
 describe('EtsyStrategy-Profile and encountering an error', function (){
   var testProfile;
-  var testBody = '{ "id": "_DEDEDEDE00"}';
+  var testBody = expectedResponse;
   var receivedError;
   var strategyInstance = getTestStrategy();
 
@@ -289,7 +292,7 @@ describe('EtsyStrategy-Profile and encountering an error', function (){
   });
 });
 
-describe('Handling a request that has been denied', function (){
+describe('EtsyStrategy-Handling a denied request', function (){
   var testRequest;
   var strategyInstance = getTestStrategy();
 

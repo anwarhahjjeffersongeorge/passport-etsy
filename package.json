@@ -1,6 +1,6 @@
 {
   "name": "passport-etsy",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "description": "Etsy (OAuth) authentication strategy for Passport and Node.js",
   "homepage": "https://github.com/anwarhahjjeffersongeorge/passport-etsy",
   "author": {
@@ -28,22 +28,32 @@
     "url": "https://github.com/anwarhahjjeffersongeorge/passport-etsy/issues"
   },
   "devDependencies": {
-    "babel-core": "^5.5.0",
+    "babel-core": ">=5.5.0",
     "babel-preset-es2015": "^6.1.4",
     "chai": "^3.4.1",
     "chai-as-promised": "^5.1.0",
     "chai-passport-strategy": "^0.2.0",
+    "connect-livereload": "^0.5.3",
+    "cookie-parser": "^1.4.0",
     "del": "^2.0.2",
+    "express": "^4.13.3",
+    "express-session": "^1.12.1",
     "gulp": "^3.6.0",
-    "gulp-babel": "^5.1.0",
+    "gulp-babel": ">=5.3.0",
     "gulp-coveralls": "^0.1.0",
     "gulp-eslint": "^1.0.0",
     "gulp-exclude-gitignore": "^1.0.0",
-    "gulp-istanbul": "^0.9.0",
+    "gulp-istanbul": ">=0.9.0",
+    "gulp-live-server": "0.0.29",
+    "gulp-livereload": "^3.8.1",
     "gulp-mocha": "^2.0.0",
     "gulp-nsp": "^2.1.0",
     "gulp-plumber": "^1.0.0",
-    "isparta": "^3.0.3"
+    "isparta": ">=3.0.3",
+    "method-override": "^2.3.5",
+    "morgan": "^1.6.1",
+    "passport": "^0.3.2",
+    "verbose": "^0.2.3"
   },
   "scripts": {
     "prepublish": "gulp prepublish",

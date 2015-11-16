@@ -1,0 +1,9 @@
+{
+  "name" : "passport-etsy-examples-login",
+  "version" : "0.0.0",
+  "dependencies" : {
+    "passport-etsy": "file:../../passport-etsy",
+    "passport-oauth": ">=0.0.0",
+    "express" : ">=0.0.0"
+  }
+}

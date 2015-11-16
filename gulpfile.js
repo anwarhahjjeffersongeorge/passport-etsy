@@ -1,5 +1,6 @@
 var path = require('path');
 var gulp = require('gulp');
+var gutil = require('gulp-util');
 var eslint = require('gulp-eslint');
 var excludeGitignore = require('gulp-exclude-gitignore');
 var mocha = require('gulp-mocha');
@@ -10,6 +11,11 @@ var coveralls = require('gulp-coveralls');
 var babel = require('gulp-babel');
 var del = require('del');
 var isparta = require('isparta');
+
+
+var gls = require('gulp-live-server');
+
+var livereload = require('gulp-livereload');
 
 // Initialize the babel transpiler so ES2015 files gets compiled
 // when they're loaded
@@ -34,7 +40,7 @@ gulp.task('nsp', function (cb) {
 });
 
 gulp.task('pre-test', function () {
-  return gulp.src('lib/**/*.js')
+  return gulp.src('dist/**/*.js')
     .pipe(istanbul({
       includeUntested: true,
       instrumenter: isparta.Instrumenter
@@ -52,11 +58,13 @@ gulp.task('test', ['pre-test'], function (cb) {
       require: ['./test/bootstrap/node.js']
     }))
     .on('error', function (err) {
+      gutil.beep();
+      gutil.log(err);
       mochaErr = err;
     })
     .pipe(istanbul.writeReports())
     .on('end', function () {
-      console.log('test on end');
+
       cb(mochaErr);
     });
 });
@@ -65,7 +73,6 @@ gulp.task('coveralls', ['test'], function () {
   if (!process.env.CI) {
     return;
   }
-
   return gulp.src(path.join(__dirname, 'coverage/lcov.info'))
     .pipe(coveralls());
 });
@@ -80,6 +87,19 @@ gulp.task('babel', ['clean'], function () {
 
 gulp.task('clean', function () {
   return del('dist');
+});
+
+//serve example
+gulp.task('serve', function (){
+  //start server
+  var server = gls.new('examples/login/app.js');
+  server.start();
+
+  //watch server for changes to templates
+  gulp.watch(['examples/login/views/*.jade'], function (changedFile) {
+    server.notify.apply(server, [changedFile]);
+  });
+
 });
 
 gulp.task('prepublish', ['nsp', 'babel']);

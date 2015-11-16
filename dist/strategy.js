@@ -1,3 +1,5 @@
+'use strict';
+
 /**
 *  See: https://www.etsy.com/developers/documentation/getting_started/oauth
 *  OAuth Approach is three legged:
@@ -47,7 +49,7 @@ var InternalOAuthError = require('passport-oauth').InternalOAuthError;
  * @param {Function} verify
  * @api public
  */
-function Strategy(options, verify){
+function Strategy(options, verify) {
   //ensure options
   options = options || {};
 
@@ -65,9 +67,9 @@ function Strategy(options, verify){
   // This parameter should be supplied as a URL query parameter
   // So, guerilla patch node-oauth implementation to add scope parameters as URL query parameters
   // (see https://github.com/jaredhanson/passport-linkedin/blob/master/lib/strategy.js)
-  this._oauth.getOAuthRequestToken = function (extraParams, callback){
+  this._oauth.getOAuthRequestToken = function (extraParams, callback) {
     //handle case when extra params are function
-    if (typeof extraParams === 'function'){
+    if (typeof extraParams === 'function') {
       callback = extraParams;
       extraParams = {};
     }
@@ -81,13 +83,13 @@ function Strategy(options, verify){
     if (extraParams.scope) {
       scopeParams += '?scope=' + extraParams.scope;
       delete extraParams.scope;
-      for (var i in defaultScopes){
-        if (scopeParams.search(defaultScopes[i]) === -1){
+      for (var i in defaultScopes) {
+        if (scopeParams.search(defaultScopes[i]) === -1) {
           scopeParams += '+' + defaultScopes[i];
         }
       }
-    } else if (!extraParams.scope){
-    // scopeParams += defaultScopes.join('+');
+    } else if (!extraParams.scope) {
+      // scopeParams += defaultScopes.join('+');
     }
     requestUrl += scopeParams;
     // console.log(requestUrl);
@@ -100,7 +102,7 @@ function Strategy(options, verify){
     //https://github.com/ciaranj/node-oauth/blob/eefd821ea9b010a44ba49afa048a421ea23e7502/lib/oauth.js
     //...exports.OAuth.prototype._performSecureRequest= function( oauth_token, oauth_token_secret, method, url, extra_params, post_body, post_content_type, callback )
     this._performSecureRequest(null, null, this._clientOptions.requestTokenHttpMethod, requestUrl, extraParams, null, null, function (error, data, response) {
-      if (error){
+      if (error) {
         callback(error);
       } else {
         var results = querystring.parse(data);
@@ -163,7 +165,7 @@ Strategy.prototype.userProfile = function (token, tokenSecret, params, done) {
     //url = 'https://openapi.etsy.com/v2/users/__SELF__'; change url?
   }
 
-  this._oauth.get(url, token, tokenSecret, function (err, body, res){
+  this._oauth.get(url, token, tokenSecret, function (err, body, res) {
     if (err) {
       return done(new InternalOAuthError('failed to fetch Etsy user profile', err));
     }
@@ -173,14 +175,14 @@ Strategy.prototype.userProfile = function (token, tokenSecret, params, done) {
 
       var profile = {
         provider: 'etsy',
-        id: json.results[0].user_id,//take the id from the primary user profile returned
+        id: json.results[0].user_id, //take the id from the primary user profile returned
         name: json.results[0].login_name,
         email: json.results[0].primary_email ? json.results[0].primary_email : null,
         _raw: body,
         _json: json
       };
       done(null, profile);
-    } catch (jsonError){
+    } catch (jsonError) {
       done(jsonError);
     }
   });
